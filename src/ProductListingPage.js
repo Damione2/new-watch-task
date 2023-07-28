@@ -70,7 +70,7 @@ const ProductListingPage = () => {
   useEffect(() => {
 		setProducts(productsData);
 		setFilteredProducts(productsData);
-}, [productsData]); 
+}, []); 
 
   useEffect(() => {
     let newSortedProducts = [...filteredProducts];
