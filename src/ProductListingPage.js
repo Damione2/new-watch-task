@@ -65,7 +65,7 @@ const ProductListingPage = () => {
     }
     setFilteredProducts(newFilteredProducts);
     setLoadMoreCount(1);
-  }, [filterOptions]);
+  }, [filterOptions, products]);
 
   useEffect(() => {
 		setProducts(productsData);
