@@ -68,6 +68,11 @@ const ProductListingPage = () => {
   }, [filterOptions]);
 
   useEffect(() => {
+		setProducts(productsData);
+		setFilteredProducts(productsData);
+}, [productsData]); 
+
+  useEffect(() => {
     let newSortedProducts = [...filteredProducts];
     if (sortOption === 'alphabeticalAZ') {
       newSortedProducts.sort((a, b) => a.name.localeCompare(b.name));
@@ -79,7 +84,7 @@ const ProductListingPage = () => {
       newSortedProducts.sort((a, b) => b.price - a.price);
     }
     setFilteredProducts(newSortedProducts);
-  }, [sortOption]);
+  }, [sortOption, filteredProducts]);
 
   const handleSortChange = e => {
     setSortOption(e.target.value);
@@ -121,105 +126,105 @@ const ProductListingPage = () => {
               <option value="blue">Blue</option>
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="targetGroupFilter">
-            <Form.Label>Target Group</Form.Label>
-            <Form.Control as="select" name="targetGroup" onChange={handleFilterChange}>
-              <option value="all">All</option>
-              <option value="men">Men</option>
-              <option value="women">Women</option>
-              <option value="unisex">Unisex</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="materialFilter">
-            <Form.Label>Material</Form.Label>
-            <Form.Control as="select" name="material" onChange={handleFilterChange}>
-              <option value="all">All</option>
-              <option value="gold">Gold</option>
-              <option value="silver">Silver</option>
-              <option value="stainlessSteel">Stainless Steel</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="diameterFilter">
-            <Form.Label>Diameter</Form.Label>
-            <Form.Control as="select" name="diameter" onChange={handleFilterChange}>
-              <option value="all">All</option>
-              <option value="&lt;30mm">&lt;30mm</option>
-              <option value="&lt;40mm">&lt;40mm</option> 
-              <option value=">40mm">>40mm</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="strapTypeFilter">
-            <Form.Label>Strap Type</Form.Label>
-            <Form.Control as="select" name="strapType" onChange={handleFilterChange}>
-              <option value="all">All</option>
-              <option value="leather">Leather</option>
-              <option value="metal">Metal</option>
-              <option value="rubber">Rubber</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="movementFilter">
-            <Form.Label>Movement</Form.Label>
-            <Form.Control as="select" name="movement" onChange={handleFilterChange}>
-              <option value="all">All</option>
-              <option value="quartz">Quartz</option>
-              <option value="automatic">Automatic</option>
-              <option value="manual">Manual</option>
-            </Form.Control>
-          </Form.Group>
-          <Form.Group controlId="specialFilter">
-            <Form.Label>Special</Form.Label>
-            <Form.Control as="select" name="special" onChange={handleFilterChange}>
-              <option value="all">All</option>
-              <option value="limitedEdition">Limited Edition</option>
-              <option value="newArrival">New Arrival</option>
-              <option value="onSale">On Sale</option>
-            </Form.Control>
-          </Form.Group>
-        </Col>
-        <Col md={9}>
-          <Row className="mb-3">
-            <Col md={6}>
-              <h5>{filteredProducts.length} products found</h5>
-            </Col>
-            <Col md={6}>
-              <Form.Group controlId="sortSelect">
-                <Form.Label>Sort by:</Form.Label>
-                <Form.Control as="select" onChange={handleSortChange}>
-                  <option value="default">Default</option>
-                  <option value="alphabeticalAZ">Alphabetical A-Z</option>
-                  <option value="alphabeticalZA">Alphabetical Z-A</option>
-                  <option value="priceAscending">Price ascending</option>
-                  <option value="priceDescending">Price descending</option>
-                </Form.Control>
-              </Form.Group>
-            </Col>
-          </Row>
-          <Row>
-            {filteredProducts.slice(0, loadMoreCount * 20).map(product => (
-              <Col md={3} key={product.id}>
-                <Card className="mb-3">
-                  <Card.Img variant="top" src={product.image} />
-                  <Card.Body>
-                    <Card.Title>{product.name}</Card.Title>
-                    <Card.Text>{product.description}</Card.Text>
-                    <Card.Text>${product.price}</Card.Text>
-                    <Button variant="primary">Add to cart</Button>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))}
-          </Row>
-          {loadMoreCount * 20 < filteredProducts.length && (
-            <Row className="my-3">
-              <Col className="text-center">
-                <Button onClick={handleLoadMoreClick}>Load more</Button>
-              </Col>
-            </Row>
-          )}
-        </Col>
-      </Row>
-    </Container>
-  );
-};
+			  <Form.Group controlId="targetGroupFilter">
+				<Form.Label>Target Group</Form.Label>
+				<Form.Control as="select" name="targetGroup" onChange={handleFilterChange}>
+				  <option value="all">All</option>
+				  <option value="men">Men</option>
+				  <option value="women">Women</option>
+				  <option value="unisex">Unisex</option>
+				</Form.Control>
+			  </Form.Group>
+			  <Form.Group controlId="materialFilter">
+				<Form.Label>Material</Form.Label>
+				<Form.Control as="select" name="material" onChange={handleFilterChange}>
+				  <option value="all">All</option>
+				  <option value="gold">Gold</option>
+				  <option value="silver">Silver</option>
+				  <option value="stainlessSteel">Stainless Steel</option>
+				</Form.Control>
+			  </Form.Group>
+			  <Form.Group controlId="diameterFilter">
+				<Form.Label>Diameter</Form.Label>
+				<Form.Control as="select" name="diameter" onChange={handleFilterChange}>
+				  <option value="all">All</option>
+				  <option value="&lt;30mm">&lt;30mm</option>
+				  <option value="&lt;40mm">&lt;40mm</option> 
+				  <option value=">40mm">>40mm</option>
+				</Form.Control>
+			  </Form.Group>
+			  <Form.Group controlId="strapTypeFilter">
+				<Form.Label>Strap Type</Form.Label>
+				<Form.Control as="select" name="strapType" onChange={handleFilterChange}>
+				  <option value="all">All</option>
+				  <option value="leather">Leather</option>
+				  <option value="metal">Metal</option>
+				  <option value="rubber">Rubber</option>
+				</Form.Control>
+			  </Form.Group>
+			  <Form.Group controlId="movementFilter">
+				<Form.Label>Movement</Form.Label>
+				<Form.Control as="select" name="movement" onChange={handleFilterChange}>
+				  <option value="all">All</option>
+				  <option value="quartz">Quartz</option>
+				  <option value="automatic">Automatic</option>
+				  <option value="manual">Manual</option>
+				</Form.Control>
+			  </Form.Group>
+			  <Form.Group controlId="specialFilter">
+				<Form.Label>Special</Form.Label>
+				<Form.Control as="select" name="special" onChange={handleFilterChange}>
+				  <option value="all">All</option>
+				  <option value="limitedEdition">Limited Edition</option>
+				  <option value="newArrival">New Arrival</option>
+				  <option value="onSale">On Sale</option>
+				</Form.Control>
+			  </Form.Group>
+			</Col>
+			<Col md={9}>
+			  <Row className="mb-3">
+				<Col md={6}>
+				  <h5>{filteredProducts.length} products found</h5>
+				</Col>
+				<Col md={6}>
+				  <Form.Group controlId="sortSelect">
+					<Form.Label>Sort by:</Form.Label>
+					<Form.Control as="select" onChange={handleSortChange}>
+					  <option value="default">Default</option>
+					  <option value="alphabeticalAZ">Alphabetical A-Z</option>
+					  <option value="alphabeticalZA">Alphabetical Z-A</option>
+					  <option value="priceAscending">Price ascending</option>
+					  <option value="priceDescending">Price descending</option>
+					</Form.Control>
+				  </Form.Group>
+				</Col>
+			  </Row>
+			  <Row>
+				{filteredProducts.slice(0, loadMoreCount * 20).map(product => (
+				  <Col md={3} key={product.id}>
+					<Card className="mb-3">
+					  <Card.Img variant="top" src={product.image} />
+					  <Card.Body>
+						<Card.Title>{product.name}</Card.Title>
+						<Card.Text>{product.description}</Card.Text>
+						<Card.Text>${product.price}</Card.Text>
+						<Button variant="primary">Add to cart</Button>
+					  </Card.Body>
+					</Card>
+				  </Col>
+				))}
+			  </Row>
+			  {loadMoreCount * 20 < filteredProducts.length && (
+				<Row className="my-3">
+				  <Col className="text-center">
+					<Button onClick={handleLoadMoreClick}>Load more</Button>
+				  </Col>
+				</Row>
+			  )}
+			</Col>
+		  </Row>
+		</Container>
+	  );
+	};
 
-export default ProductListingPage;
+	export default ProductListingPage;
