@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button, Form } from 'react-bootstrap';
 import productsData from './products.json';
+import './ProductListingPage.css';
 
 const ProductListingPage = () => {
   const [products, setProducts] = useState([]);
@@ -84,7 +85,7 @@ const ProductListingPage = () => {
       newSortedProducts.sort((a, b) => b.price - a.price);
     }
     setFilteredProducts(newSortedProducts);
-  }, [sortOption, filteredProducts]);
+  }, [sortOption]);
 
   const handleSortChange = e => {
     setSortOption(e.target.value);
@@ -225,6 +226,5 @@ const ProductListingPage = () => {
 		  </Row>
 		</Container>
 	  );
-	};
-
-	export default ProductListingPage;
+}
+export default ProductListingPage;
